@@ -36,6 +36,7 @@ Run `mdutils --help` to list the commands and their options.
 - GitHub-style heading ids, so links like `#1-getting-started` work
 - Raw HTML in Markdown is off by default; turn it on when you trust the source
 - Everything is configurable: texts (translations), theme, menu, extra CSS
+- Drops into any website with one function call, without its styles touching yours
 
 ### From the command line
 
@@ -157,6 +158,41 @@ const { title, html, headings } = convert("# Guide\n\n## Setup\n");
 // title: "Guide"
 // headings: [{ level: 1, id: "guide", text: "Guide" }, { level: 2, id: "setup", text: "Setup" }]
 ```
+
+### In a website
+
+`mount` shows a Markdown document, rendered as a full documentation page, inside an element of your site.
+The page lives in an iframe, so its styles never leak into your site and yours never leak into it.
+
+With a bundler:
+
+```js
+import { mount } from "mdutils";
+
+mount(document.getElementById("docs"), markdown, { siteName: "Acme docs" });
+```
+
+With a script tag, no build step:
+
+```html
+<div id="docs" style="height: 100vh"></div>
+<script src="node_modules/mdutils/dist/mdutils.browser.js"></script>
+<script>
+  mdutils.mount(document.getElementById("docs"), "# Hello\n\n## First part\n\nSome *Markdown*.");
+</script>
+```
+
+`mount` accepts every option of `markdownToHtml`, plus:
+
+| Option | Default | Effect |
+|---|---|---|
+| `height` | `"100%"` | Height of the frame, as a CSS value. Give the container a height |
+| `sandbox` | sandboxed only with `html: true` | Value of the iframe `sandbox` attribute, or `false` for none |
+
+In a sandboxed frame the chosen theme cannot be remembered between visits.
+
+`markdownToHtml`, `renderParts` and `convert` also work in the browser if you prefer to build the page yourself,
+for example `iframe.srcdoc = markdownToHtml(markdown)`.
 
 ## License
 
