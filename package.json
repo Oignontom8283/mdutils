@@ -44,6 +44,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "test": "npm run build && node --test \"test/*.test.mjs\"",
     "prepublishOnly": "npm test"
   },
