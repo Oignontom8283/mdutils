@@ -1,0 +1,58 @@
+{
+  "name": "mdutils",
+  "version": "0.0.0",
+  "description": "A toolkit to work with Markdown, as a command line tool and a library for Node.js and the browser. Converts Markdown to polished standalone HTML pages.",
+  "keywords": [
+    "markdown",
+    "markdown-tools",
+    "html",
+    "documentation",
+    "converter",
+    "cli",
+    "static-site"
+  ],
+  "license": "MIT",
+  "author": "Oignontom8283",
+  "homepage": "https://github.com/Oignontom8283/mdutils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oignontom8283/mdutils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Oignontom8283/mdutils/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "mdutils": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test \"test/*.test.mjs\"",
+    "prepublishOnly": "npm test"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "14.1.2",
+    "@types/node": "22.20.5",
+    "typescript": "5.6.3"
+  }
+}
