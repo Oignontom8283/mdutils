@@ -1,6 +1,6 @@
 {
   "name": "mdutils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A toolkit to work with Markdown, as a command line tool and a library for Node.js and the browser. Converts Markdown to polished standalone HTML pages.",
   "keywords": [
     "markdown",
